@@ -50,6 +50,11 @@ vector<int> getPath(int **DAG, int size, int source, int destination)
 {
   vector<int> answer;
   findPath(DAG,size,source,destination,&answer);
+  printf("answer");
+  for (int i = 0; i < answer.size(); ++i)
+  {
+      printf("%d", answer[i]);
+  }
   return answer;
 }
 
