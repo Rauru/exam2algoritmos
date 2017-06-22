@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1498172414 source:d:\clases\exam2\main.cpp
+	"Test.h"
+	<iostream>
+	<map>
+
+1498169910 d:\clases\exam2\test.h
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1498172421 source:d:\clases\exam2\test.cpp
+	"Test.h"
+
