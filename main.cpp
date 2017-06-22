@@ -22,54 +22,36 @@ int longestPalindromicSubsequence(string sequence)
 {
   return longestPalindromicSubsequence(sequence, 0, sequence.size()-1);
 }
+void findPath(int **DAG,int size,int source,int destination,vector<int> *answer)
+{
+  int next = 0,nextWeight=9999;
+  for (int i = 0; i < size; ++i)
+  {
+    if (DAG[source][i] != -1)
+    {
+      if(i == destination)
+      {
+        answer->push_back(i);
+        return;
+      }else{
+        if(DAG[source][i] <= nextWeight)
+        {
+          next = i;
+          nextWeight = DAG[source][i];
+        }
+      }
+    }
+  }
+  answer->push_back(next);
+  findPath(DAG,size,next,destination,answer);
+}
 
 vector<int> getPath(int **DAG, int size, int source, int destination)
 {
-    vector<int> answer;
-    vector<int> failed;
-    int check = source;
-    int current = source;
-    int next = source;
-    int eraset=0;
-    for(int i=current;i<size;i++)
-    {
-        for(int j=current+1; j<size; j++)
-        {
-            if(DAG[i][j] !=-1)
-            {
-                bool verify;
-                for(int f = 0; f < failed.size(); f++)
-                {
-                    if(j == failed[f])
-                    {
-                        verify = true;
-                    }
-                }
-                if(!verify){
-                    current = j;
-                    next = next++;
-                    answer.push_back(j);
-                    eraset ++;
-                }
-                }else if(DAG[i][j] ==-1){
-
-                    failed.push_back(current);
-                    for(int e = 0; e< eraset; e++){
-                        answer.pop_back();
-                    }
-                    eraset =0;
-                }
-        }
-    }
-
-    printf("answer");
-    for(int f = 0; f < answer.size(); f++)
-                {
-                    printf("%d", answer[f]);
-                }
-    return answer;
+  vector<int> answer;
+  findPath(DAG,size,source,destination,&answer);
+  return answer;
 }
-
 
 int main ()
 {
